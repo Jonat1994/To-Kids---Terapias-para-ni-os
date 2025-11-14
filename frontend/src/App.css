@@ -39,9 +39,22 @@
   text-decoration: none;
   transition: transform 0.3s ease;
   font-family: 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', cursive;
+  display: flex;
+  align-items: center;
 }
 
 .nav-logo:hover {
+  transform: scale(1.05) rotate(-2deg);
+}
+
+.logo-image {
+  height: 80px;
+  width: auto;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.nav-logo:hover .logo-image {
   transform: scale(1.05) rotate(-2deg);
 }
 

@@ -16,7 +16,7 @@ function App() {
         <nav className="navbar">
           <div className="nav-container">
             <Link to="/" className="nav-logo">
-              🏥 Centro de Terapia Infantil
+              <img src="/logo.png.png" alt="TO kids - Terapias para niños" className="logo-image" />
             </Link>
             <ul className="nav-menu">
               <li className="nav-item">
