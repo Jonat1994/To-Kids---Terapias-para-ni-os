@@ -190,6 +190,32 @@
   box-shadow: 0 0 0 3px rgba(255, 107, 157, 0.2);
 }
 
+.form-group input:invalid:not(:placeholder-shown),
+.form-group input.error {
+  border-color: #dc3545;
+}
+
+/* Field Error Messages */
+.field-error {
+  display: block;
+  color: #dc3545;
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+  font-weight: 500;
+  animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* Table Styles */
 .table-container {
   overflow-x: auto;

@@ -21,6 +21,7 @@ function PacienteForm() {
 
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
+  const [fieldErrors, setFieldErrors] = useState({})
 
   useEffect(() => {
     if (isEditMode) {
@@ -42,8 +43,63 @@ function PacienteForm() {
     }
   }
 
+  // Validar email
+  const validateEmail = (email) => {
+    if (!email) return true // Email es opcional
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    return emailRegex.test(email)
+  }
+
+  // Validar que solo contenga números (y permitir guiones, espacios, paréntesis para formato)
+  const handlePhoneChange = (e) => {
+    const { name, value } = e.target
+    // Permitir solo números, guiones, espacios, paréntesis y el signo +
+    const phoneValue = value.replace(/[^\d\s\-()+]/g, '')
+    setFormData(prev => ({
+      ...prev,
+      [name]: phoneValue
+    }))
+    // Limpiar error si existe
+    if (fieldErrors[name]) {
+      setFieldErrors(prev => {
+        const newErrors = { ...prev }
+        delete newErrors[name]
+        return newErrors
+      })
+    }
+  }
+
   const handleChange = (e) => {
     const { name, value } = e.target
+    
+    // Si es un campo de teléfono, usar el handler especial
+    if (name === 'telefono' || name === 'telefonoTutor') {
+      handlePhoneChange(e)
+      return
+    }
+
+    // Si es email, validar
+    if (name === 'email') {
+      setFormData(prev => ({
+        ...prev,
+        [name]: value
+      }))
+      
+      if (value && !validateEmail(value)) {
+        setFieldErrors(prev => ({
+          ...prev,
+          [name]: 'Por favor ingresa un correo electrónico válido'
+        }))
+      } else {
+        setFieldErrors(prev => {
+          const newErrors = { ...prev }
+          delete newErrors[name]
+          return newErrors
+        })
+      }
+      return
+    }
+
     setFormData(prev => ({
       ...prev,
       [name]: value
@@ -53,8 +109,19 @@ function PacienteForm() {
   const handleSubmit = async (e) => {
     e.preventDefault()
     
+    // Validar campos obligatorios
     if (!formData.nombre || !formData.apellidos) {
       alert('Por favor completa los campos obligatorios')
+      return
+    }
+
+    // Validar email si está presente
+    if (formData.email && !validateEmail(formData.email)) {
+      setFieldErrors(prev => ({
+        ...prev,
+        email: 'Por favor ingresa un correo electrónico válido'
+      }))
+      alert('Por favor corrige el correo electrónico')
       return
     }
 
@@ -154,7 +221,11 @@ function PacienteForm() {
                   value={formData.telefono}
                   onChange={handleChange}
                   placeholder="Ej: 555-1234"
+                  pattern="[0-9\s\-()+]*"
                 />
+                {fieldErrors.telefono && (
+                  <span className="field-error">{fieldErrors.telefono}</span>
+                )}
               </div>
             </div>
 
@@ -168,6 +239,9 @@ function PacienteForm() {
                 onChange={handleChange}
                 placeholder="ejemplo@correo.com"
               />
+              {fieldErrors.email && (
+                <span className="field-error">{fieldErrors.email}</span>
+              )}
             </div>
           </div>
 
@@ -212,7 +286,11 @@ function PacienteForm() {
                   value={formData.telefonoTutor}
                   onChange={handleChange}
                   placeholder="Ej: 555-5678"
+                  pattern="[0-9\s\-()+]*"
                 />
+                {fieldErrors.telefonoTutor && (
+                  <span className="field-error">{fieldErrors.telefonoTutor}</span>
+                )}
               </div>
             </div>
           </div>

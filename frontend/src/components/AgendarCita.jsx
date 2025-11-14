@@ -10,6 +10,7 @@ function AgendarCita() {
   const [pacientes, setPacientes] = useState([])
   const [horarios, setHorarios] = useState([])
   const [loading, setLoading] = useState(false)
+  const [fieldErrors, setFieldErrors] = useState({})
 
   const [formData, setFormData] = useState({
     // Datos del paciente (si es nuevo)
@@ -46,8 +47,62 @@ function AgendarCita() {
     }
   }
 
+  // Validar email
+  const validateEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    return emailRegex.test(email)
+  }
+
+  // Validar que solo contenga números (y permitir guiones, espacios, paréntesis para formato)
+  const handlePhoneChange = (e) => {
+    const { name, value } = e.target
+    // Permitir solo números, guiones, espacios, paréntesis y el signo +
+    const phoneValue = value.replace(/[^\d\s\-()+]/g, '')
+    setFormData(prev => ({
+      ...prev,
+      [name]: phoneValue
+    }))
+    // Limpiar error si existe
+    if (fieldErrors[name]) {
+      setFieldErrors(prev => {
+        const newErrors = { ...prev }
+        delete newErrors[name]
+        return newErrors
+      })
+    }
+  }
+
   const handleChange = (e) => {
     const { name, value } = e.target
+    
+    // Si es un campo de teléfono, usar el handler especial
+    if (name === 'telefonoTutor') {
+      handlePhoneChange(e)
+      return
+    }
+
+    // Si es email, validar
+    if (name === 'emailConfirmacion') {
+      setFormData(prev => ({
+        ...prev,
+        [name]: value
+      }))
+      
+      if (value && !validateEmail(value)) {
+        setFieldErrors(prev => ({
+          ...prev,
+          [name]: 'Por favor ingresa un correo electrónico válido'
+        }))
+      } else {
+        setFieldErrors(prev => {
+          const newErrors = { ...prev }
+          delete newErrors[name]
+          return newErrors
+        })
+      }
+      return
+    }
+
     setFormData(prev => ({
       ...prev,
       [name]: value
@@ -56,6 +111,16 @@ function AgendarCita() {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    
+    // Validar email si está presente
+    if (formData.emailConfirmacion && !validateEmail(formData.emailConfirmacion)) {
+      setFieldErrors(prev => ({
+        ...prev,
+        emailConfirmacion: 'Por favor ingresa un correo electrónico válido'
+      }))
+      alert('Por favor corrige el correo electrónico')
+      return
+    }
     
     try {
       setLoading(true)
@@ -230,7 +295,11 @@ function AgendarCita() {
                       onChange={handleChange}
                       required={esNuevoPaciente}
                       placeholder="(123) 456-7890"
+                      pattern="[0-9\s\-()+]*"
                     />
+                    {fieldErrors.telefonoTutor && (
+                      <span className="field-error">{fieldErrors.telefonoTutor}</span>
+                    )}
                   </div>
                 </div>
               </>
@@ -247,6 +316,9 @@ function AgendarCita() {
                 required
                 placeholder="tu@email.com"
               />
+              {fieldErrors.emailConfirmacion && (
+                <span className="field-error">{fieldErrors.emailConfirmacion}</span>
+              )}
               <small>Enviaremos la confirmación a este correo</small>
             </div>
 
