@@ -8,6 +8,7 @@ import AgendarCita from './components/AgendarCita'
 import Materiales from './components/Materiales'
 import Contacto from './components/Contacto'
 import AdminPanel from './components/AdminPanel'
+import WhatsAppFloat from './components/WhatsAppFloat'
 
 function App() {
   return (
@@ -56,8 +57,132 @@ function App() {
         </main>
 
         <footer className="footer">
-          <p>&copy; 2025 Centro de Terapia Infantil. Todos los derechos reservados. Jonathan Flamenco</p>
+          <div className="footer-container">
+            {/* Columna 1: Logo e Información del Centro */}
+            <div className="footer-section footer-logo-section">
+              <Link to="/" className="footer-logo-link">
+                <img src="/logo.png.png" alt="Centro de Terapia Infantil" className="footer-logo-image" />
+                <div className="footer-logo-text">
+                  <h2 className="footer-logo-title">Centro de</h2>
+                  <h2 className="footer-logo-title">Terapia Infantil</h2>
+                </div>
+              </Link>
+              <div className="footer-contact-info">
+                <p className="footer-contact-item">
+                  <span className="footer-icon">📍</span>
+                  <span>Calle Principal 123, Ciudad, País</span>
+                </p>
+                <p className="footer-contact-item">
+                  <span className="footer-icon">📞</span>
+                  <span><a href="tel:+50370629993">+503 7062-9993</a></span>
+                </p>
+                <p className="footer-contact-item">
+                  <span className="footer-icon">✉️</span>
+                  <span><a href="contacto.tokids@Gmail.com">contacto.tokids@Gmail.com</a></span>
+                </p>
+              </div>
+            </div>
+
+            {/* Columna 2: Redes Sociales */}
+            <div className="footer-section">
+              <h3 className="footer-title">Redes Sociales</h3>
+              <div className="social-links">
+                <a 
+                  href="https://www.facebook.com" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="social-link facebook"
+                  aria-label="Facebook"
+                >
+                  <span className="social-icon">📘</span>
+                  <span>Facebook</span>
+                </a>
+                <a 
+                  href="https://www.instagram.com" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="social-link instagram"
+                  aria-label="Instagram"
+                >
+                  <span className="social-icon">📷</span>
+                  <span>Instagram</span>
+                </a>
+                <a 
+                  href="https://www.tiktok.com" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="social-link tiktok"
+                  aria-label="TikTok"
+                >
+                  <span className="social-icon">🎵</span>
+                  <span>TikTok</span>
+                </a>
+                <a 
+                  href="https://wa.me/50370629993" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="social-link whatsapp"
+                  aria-label="WhatsApp"
+                >
+                  <span className="social-icon">💬</span>
+                  <span>WhatsApp</span>
+                </a>
+              </div>
+            </div>
+
+            {/* Columna 3: Enlaces de Interés */}
+            <div className="footer-section">
+              <h3 className="footer-title">Enlaces de Interés</h3>
+              <div className="footer-links">
+                <Link to="/" className="footer-link">
+                  <span className="footer-link-icon">🏠</span>
+                  <span>Inicio</span>
+                </Link>
+                <Link to="/servicios" className="footer-link">
+                  <span className="footer-link-icon">⭐</span>
+                  <span>Nuestros Servicios</span>
+                </Link>
+                <Link to="/agendar-cita" className="footer-link">
+                  <span className="footer-link-icon">📅</span>
+                  <span>Agendar Cita</span>
+                </Link>
+                <Link to="/materiales" className="footer-link">
+                  <span className="footer-link-icon">📚</span>
+                  <span>Materiales</span>
+                </Link>
+                <Link to="/contacto" className="footer-link">
+                  <span className="footer-link-icon">📞</span>
+                  <span>Contacto</span>
+                </Link>
+              </div>
+            </div>
+
+            {/* Columna 4: Información Institucional */}
+            <div className="footer-section">
+              <h3 className="footer-title">Información Institucional</h3>
+              <div className="footer-institutional-links">
+                <Link to="/contacto" className="footer-institutional-link">
+                  Misión y Visión
+                </Link>
+                <Link to="/servicios" className="footer-institutional-link">
+                  Nuestro Método
+                </Link>
+                <Link to="/contacto" className="footer-institutional-link">
+                  Valores
+                </Link>
+                <Link to="/admin" className="footer-institutional-link">
+                  Panel Administrativo
+                </Link>
+              </div>
+            </div>
+          </div>
+          <div className="footer-bottom">
+            <p>&copy; 2025 Centro de Terapia Infantil. Todos los derechos reservados. | Desarrollado por Jonathan Flamenco</p>
+          </div>
         </footer>
+
+        {/* Burbuja flotante de WhatsApp */}
+        <WhatsAppFloat />
       </div>
     </Router>
   )
