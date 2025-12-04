@@ -45,12 +45,14 @@ public class CitaController {
     }
 
     @PostMapping
-    public ResponseEntity<Cita> createCita(@Valid @RequestBody Cita cita) {
+    public ResponseEntity<?> createCita(@Valid @RequestBody Cita cita) {
         try {
             Cita nuevaCita = citaService.createCita(cita);
             return ResponseEntity.status(HttpStatus.CREATED).body(nuevaCita);
-        } catch (RuntimeException e) {
-            return ResponseEntity.badRequest().build();
+        } catch (Exception e) {
+            e.printStackTrace(); // Log del error en consola
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body("Error al crear cita: " + e.getMessage());
         }
     }
 
@@ -71,4 +73,3 @@ public class CitaController {
         return ResponseEntity.notFound().build();
     }
 }
-

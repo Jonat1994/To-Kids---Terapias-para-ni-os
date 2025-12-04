@@ -31,9 +31,15 @@ public class PacienteController {
     }
 
     @PostMapping
-    public ResponseEntity<Paciente> createPaciente(@Valid @RequestBody Paciente paciente) {
-        Paciente nuevoPaciente = pacienteService.createPaciente(paciente);
-        return ResponseEntity.status(HttpStatus.CREATED).body(nuevoPaciente);
+    public ResponseEntity<?> createPaciente(@Valid @RequestBody Paciente paciente) {
+        try {
+            Paciente nuevoPaciente = pacienteService.createPaciente(paciente);
+            return ResponseEntity.status(HttpStatus.CREATED).body(nuevoPaciente);
+        } catch (Exception e) {
+            e.printStackTrace(); // Log del error en consola
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body("Error al crear paciente: " + e.getMessage());
+        }
     }
 
     @PutMapping("/{id}")
@@ -53,4 +59,3 @@ public class PacienteController {
         return ResponseEntity.notFound().build();
     }
 }
-
