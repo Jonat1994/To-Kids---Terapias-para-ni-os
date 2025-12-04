@@ -1,7 +1,13 @@
+@media (min-width: 768px) {
+  .servicios-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+  }
+}
+
 .servicios-container {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 2rem 1rem;
+  padding: 1.5rem 1rem;
 }
 
 .servicios-header {
@@ -21,7 +27,7 @@
   color: #666;
   max-width: 800px;
   margin: 0 auto;
-  line-height: 1.8;
+  line-height: 1.7;
 }
 
 .servicios-grid {
@@ -32,54 +38,88 @@
 }
 
 .servicio-card {
-  padding: 2rem;
-  text-align: center;
-  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  background: white;
+  border-radius: 18px;
+  border: 2px solid rgba(255, 107, 157, 0.2);
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  transition: transform 0.3s ease, border 0.3s ease;
 }
 
 .servicio-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 15px 40px rgba(255, 107, 157, 0.3);
+  transform: translateY(-6px);
+  border-color: #FF6B9D;
+}
+
+.servicio-image img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+}
+
+.servicio-body {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.servicio-top-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .servicio-icono {
-  font-size: 4rem;
-  margin-bottom: 1rem;
+  font-size: 2.2rem;
 }
 
 .servicio-card h2 {
   color: #FF6B9D;
-  margin-bottom: 1rem;
+  margin: 0;
   font-size: 1.5rem;
 }
 
 .servicio-descripcion {
-  color: #666;
+  color: #555;
   line-height: 1.6;
-  margin-bottom: 1.5rem;
+  margin: 0;
 }
 
 .servicio-beneficios {
   text-align: left;
-  margin-top: 1.5rem;
-  padding-top: 1.5rem;
-  border-top: 2px solid #FFE5B4;
+  margin-top: 1rem;
 }
 
 .servicio-beneficios h4 {
   color: #333;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.5rem;
 }
 
 .servicio-beneficios ul {
   list-style: none;
   padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
 }
 
 .servicio-beneficios li {
   color: #666;
-  padding: 0.5rem 0;
   font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.servicio-beneficios li::before {
+  content: '✓';
+  color: #25D366;
+  font-weight: 700;
 }
 
 .servicios-cta {

@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { pacienteService } from '../services/api'
+import { useToast } from '../context/ToastContext'
 import './PacientesList.css'
 
 function PacientesList() {
+  const { success, error: showError } = useToast()
   const [pacientes, setPacientes] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
@@ -30,9 +32,10 @@ function PacientesList() {
     if (window.confirm('¿Estás seguro de que quieres eliminar este paciente?')) {
       try {
         await pacienteService.delete(id)
+        success('Paciente eliminado exitosamente')
         loadPacientes() // Recargar la lista
       } catch (err) {
-        alert('Error al eliminar el paciente')
+        showError('Error al eliminar el paciente')
         console.error('Error:', err)
       }
     }
@@ -76,7 +79,7 @@ function PacientesList() {
       <div className="pacientes-header">
         <h1>Lista de Pacientes</h1>
         <Link to="/nuevo-paciente" className="btn btn-primary">
-          ➕ Nuevo Paciente
+          Nuevo Paciente
         </Link>
       </div>
 
@@ -119,14 +122,14 @@ function PacientesList() {
                       className="btn-icon btn-edit"
                       title="Editar"
                     >
-                      ✏️
+                      Editar
                     </Link>
                     <button
                       onClick={() => handleDelete(paciente.id)}
                       className="btn-icon btn-delete"
                       title="Eliminar"
                     >
-                      🗑️
+                      Eliminar
                     </button>
                   </td>
                 </tr>

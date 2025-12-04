@@ -4,6 +4,9 @@
 }
 
 .hero-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
   padding: 4rem 2rem;
   background: linear-gradient(135deg, rgba(255, 182, 217, 0.2) 0%, rgba(168, 230, 207, 0.2) 100%);
@@ -22,6 +25,8 @@
   color: #FF6B9D;
   margin-bottom: 1rem;
   font-weight: 600;
+  text-align: center;
+  width: 100%;
 }
 
 .hero-description {
@@ -32,6 +37,8 @@
   margin-left: auto;
   margin-right: auto;
   line-height: 1.8;
+  text-align: center;
+  width: 100%;
 }
 
 .hero-buttons {
@@ -106,37 +113,44 @@
   margin-bottom: 2rem;
 }
 
+
 .terapia-card {
-  text-align: center;
-  padding: 2rem 1.5rem;
-  background: linear-gradient(135deg, rgba(255, 182, 217, 0.1) 0%, rgba(168, 230, 207, 0.1) 100%);
-  border-radius: 16px;
-  transition: all 0.3s ease;
-  border: 2px solid transparent;
+  background: white;
+  border-radius: 20px;
+  padding: 1rem;
+  border: 2px solid rgba(255, 107, 157, 0.1);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  transition: transform 0.3s ease, border 0.3s ease;
+  text-align: left;
 }
 
 .terapia-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-6px);
   border-color: #FF6B9D;
-  box-shadow: 0 10px 30px rgba(255, 107, 157, 0.2);
 }
 
-.terapia-icon {
-  font-size: 3.5rem;
-  margin-bottom: 1rem;
+.terapia-image img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 16px;
 }
 
 .terapia-card h3 {
   color: #FF6B9D;
-  margin-bottom: 0.75rem;
-  font-size: 1.25rem;
+  margin: 0;
+  font-size: 1.4rem;
   font-weight: 700;
 }
 
 .terapia-card p {
-  color: #666;
+  color: #555;
+  font-size: 1rem;
   line-height: 1.6;
-  font-size: 0.95rem;
+  margin: 0;
 }
 
 .terapias-cta {

@@ -146,6 +146,55 @@
   margin-bottom: 1rem;
 }
 
+.actividades-section {
+  margin-top: 3rem;
+  padding: 2rem;
+  border-radius: 20px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 182, 217, 0.15));
+  border: 2px solid rgba(255, 107, 157, 0.2);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.08);
+}
+
+.actividades-header h2 {
+  margin: 0;
+  color: #FF6B9D;
+}
+
+.actividades-header p {
+  color: #555;
+  margin-top: 0.4rem;
+}
+
+.actividades-grid {
+  margin-top: 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.actividad-card {
+  padding: 1rem;
+  border-radius: 16px;
+  background: white;
+  border: 1px solid rgba(255, 107, 157, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  min-height: 180px;
+}
+
+.actividad-card h3 {
+  margin: 0;
+  color: #333;
+}
+
+.actividad-card p {
+  margin: 0;
+  color: #555;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
 .empty-state p {
   color: #999;
 }

@@ -57,23 +57,40 @@
 
 .btn-icon {
   background: none;
-  border: none;
-  font-size: 1.25rem;
+  border: 1px solid #e0e0e0;
+  font-size: 0.875rem;
+  font-weight: 500;
   cursor: pointer;
-  padding: 0.25rem 0.5rem;
-  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
   transition: all 0.3s ease;
   text-decoration: none;
+  color: #333;
+  display: inline-block;
+}
+
+.btn-edit {
+  color: #667eea;
+  border-color: #667eea;
 }
 
 .btn-edit:hover {
   background: #667eea;
-  transform: scale(1.1);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(102, 126, 234, 0.3);
+}
+
+.btn-delete {
+  color: #dc3545;
+  border-color: #dc3545;
 }
 
 .btn-delete:hover {
   background: #dc3545;
-  transform: scale(1.1);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(220, 53, 69, 0.3);
 }
 
 @media (max-width: 768px) {

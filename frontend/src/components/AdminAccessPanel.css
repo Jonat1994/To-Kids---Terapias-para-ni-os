@@ -1,0 +1,127 @@
+.access-panel-layout {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem 1rem 3rem;
+}
+
+.access-hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  background: linear-gradient(135deg, #FFFFFF, #fff9fb);
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.grid.two-column {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.5rem;
+}
+
+.credential-list ul {
+  list-style: none;
+  margin: 1rem 0 0;
+  padding: 0;
+}
+
+.credential-item {
+  background: #fff;
+  border-radius: 14px;
+  padding: 1rem 1.25rem;
+  margin-bottom: 0.75rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: border 0.25s ease, transform 0.25s ease;
+}
+
+.credential-item.active {
+  border-color: #FF6B9D;
+  transform: translateX(5px);
+}
+
+.status-badge {
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.status-activo {
+  background: rgba(76, 175, 80, 0.12);
+  color: #2E7D32;
+}
+
+.status-bloqueado {
+  background: rgba(244, 67, 54, 0.12);
+  color: #C62828;
+}
+
+.credential-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.panel-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.panel-form input,
+.panel-form textarea {
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 0.9rem;
+  font-size: 1rem;
+  resize: vertical;
+}
+
+.muted {
+  color: #666;
+  font-size: 0.95rem;
+}
+
+.log-section {
+  margin-top: 2rem;
+}
+
+.log-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.log-item {
+  padding: 1rem 1.25rem;
+  border-radius: 14px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: #fcfcfc;
+}
+
+.log-date {
+  font-size: 0.8rem;
+  color: #999;
+}
+
+.log-action {
+  margin: 0.35rem 0;
+  font-weight: 600;
+  color: #333;
+}
+
+.log-by {
+  font-size: 0.9rem;
+  color: #555;
+}
+

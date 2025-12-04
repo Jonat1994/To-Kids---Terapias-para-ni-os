@@ -1,12 +1,14 @@
 import { useState, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { pacienteService } from '../services/api'
+import { useToast } from '../context/ToastContext'
 import './PacienteForm.css'
 
 function PacienteForm() {
   const navigate = useNavigate()
   const { id } = useParams()
   const isEditMode = !!id
+  const { success, error: showError } = useToast()
 
   const [formData, setFormData] = useState({
     nombre: '',
@@ -111,7 +113,7 @@ function PacienteForm() {
     
     // Validar campos obligatorios
     if (!formData.nombre || !formData.apellidos) {
-      alert('Por favor completa los campos obligatorios')
+      showError('Por favor completa los campos obligatorios')
       return
     }
 
@@ -121,7 +123,7 @@ function PacienteForm() {
         ...prev,
         email: 'Por favor ingresa un correo electrónico válido'
       }))
-      alert('Por favor corrige el correo electrónico')
+      showError('Por favor corrige el correo electrónico')
       return
     }
 
@@ -129,14 +131,16 @@ function PacienteForm() {
       setLoading(true)
       if (isEditMode) {
         await pacienteService.update(id, formData)
+        success('Paciente actualizado exitosamente')
       } else {
         await pacienteService.create(formData)
+        success('Paciente creado exitosamente')
       }
-      navigate('/pacientes')
+      setTimeout(() => navigate('/pacientes'), 1000)
     } catch (err) {
       setError('Error al guardar el paciente')
       console.error('Error:', err)
-      alert('Error al guardar el paciente. Por favor intenta de nuevo.')
+      showError('Error al guardar el paciente. Por favor intenta de nuevo.')
     } finally {
       setLoading(false)
     }
@@ -159,7 +163,7 @@ function PacienteForm() {
     <div className="form-container">
       <div className="card">
         <h1 className="form-title">
-          {isEditMode ? '✏️ Editar Paciente' : '➕ Nuevo Paciente'}
+          {isEditMode ? 'Editar Paciente' : 'Nuevo Paciente'}
         </h1>
 
         {error && (

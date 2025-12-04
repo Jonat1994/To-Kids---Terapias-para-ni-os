@@ -2,6 +2,33 @@ import { useState, useEffect } from 'react'
 import { materialService } from '../services/api'
 import './Materiales.css'
 
+const actividades = [
+  {
+    id: 'memoria',
+    titulo: 'Juego de memoria visual',
+    descripcion: 'Parejas de imágenes y sonidos pensados para reforzar la atención sostenida.',
+    link: 'https://www.educaplay.com/es/recursoseducativos/18319527-juego_de_memoria.html'
+  },
+  {
+    id: 'colores',
+    titulo: 'Clasifica colores y formas',
+    descripcion: 'Actividad interactiva que combina reconocimiento visual y destreza motora.',
+    link: 'https://www.highlightskids.com/online-games/color/'
+  },
+  {
+    id: 'relajacion',
+    titulo: 'Respira con la tortuga',
+    descripcion: 'Respiraciones guiadas y visualizaciones antes o después de la terapia.',
+    link: 'https://www.doctorhappiness.com/happygames/turtle-breathing/'
+  },
+  {
+    id: 'historias',
+    titulo: 'Cuentos interactivos',
+    descripcion: 'Historias narradas con pictogramas que fortalecen la comprensión auditiva.',
+    link: 'https://www.storylineonline.net'
+  }
+]
+
 function Materiales() {
   const [materiales, setMateriales] = useState([])
   const [loading, setLoading] = useState(true)
@@ -125,6 +152,26 @@ function Materiales() {
           ))}
         </div>
       )}
+
+      <div className="actividades-section card">
+        <div className="actividades-header">
+          <div>
+            <h2>Actividades interactivas</h2>
+            <p>Juegos y cuentos seguros que apoyan la atención, el lenguaje y la regulación.</p>
+          </div>
+        </div>
+        <div className="actividades-grid">
+          {actividades.map((actividad) => (
+            <article key={actividad.id} className="actividad-card">
+              <h3>{actividad.titulo}</h3>
+              <p>{actividad.descripcion}</p>
+              <a href={actividad.link} target="_blank" rel="noreferrer" className="btn btn-secondary">
+                Abrir actividad
+              </a>
+            </article>
+          ))}
+        </div>
+      </div>
     </div>
   )
 }

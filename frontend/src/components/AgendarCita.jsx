@@ -1,13 +1,14 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { citaService, pacienteService, horarioService } from '../services/api'
+import { useToast } from '../context/ToastContext'
 import './AgendarCita.css'
 
 function AgendarCita() {
   const navigate = useNavigate()
+  const { success, error: showError } = useToast()
   
   const [step, setStep] = useState(1) // Paso del formulario
-  const [pacientes, setPacientes] = useState([])
   const [horarios, setHorarios] = useState([])
   const [loading, setLoading] = useState(false)
   const [fieldErrors, setFieldErrors] = useState({})
@@ -22,14 +23,11 @@ function AgendarCita() {
     emailConfirmacion: '',
     
     // Datos de la cita
-    pacienteId: '',
     fechaHora: '',
     motivo: '',
     duracionMinutos: 60,
     observaciones: ''
   })
-
-  const [esNuevoPaciente, setEsNuevoPaciente] = useState(false)
 
   useEffect(() => {
     loadData()
@@ -37,9 +35,6 @@ function AgendarCita() {
 
   const loadData = async () => {
     try {
-      const pacientesData = await pacienteService.getAll()
-      setPacientes(pacientesData)
-      
       const horariosData = await horarioService.getDisponibles()
       setHorarios(horariosData)
     } catch (error) {
@@ -118,31 +113,24 @@ function AgendarCita() {
         ...prev,
         emailConfirmacion: 'Por favor ingresa un correo electrónico válido'
       }))
-      alert('Por favor corrige el correo electrónico')
+      showError('Por favor corrige el correo electrónico')
       return
     }
     
     try {
       setLoading(true)
       
-      let pacienteId = formData.pacienteId
+      const nuevoPaciente = await pacienteService.create({
+        nombre: formData.nombrePaciente,
+        apellidos: formData.apellidosPaciente,
+        fechaNacimiento: formData.fechaNacimiento,
+        nombreTutor: formData.nombreTutor,
+        telefonoTutor: formData.telefonoTutor,
+        email: formData.emailConfirmacion
+      })
 
-      // Si es nuevo paciente, crear primero el paciente
-      if (esNuevoPaciente) {
-        const nuevoPaciente = await pacienteService.create({
-          nombre: formData.nombrePaciente,
-          apellidos: formData.apellidosPaciente,
-          fechaNacimiento: formData.fechaNacimiento,
-          nombreTutor: formData.nombreTutor,
-          telefonoTutor: formData.telefonoTutor,
-          email: formData.emailConfirmacion
-        })
-        pacienteId = nuevoPaciente.id
-      }
-
-      // Crear la cita
       const cita = {
-        paciente: { id: pacienteId },
+        paciente: { id: nuevoPaciente.id },
         fechaHora: formData.fechaHora,
         duracionMinutos: parseInt(formData.duracionMinutos),
         motivo: formData.motivo,
@@ -153,21 +141,17 @@ function AgendarCita() {
 
       await citaService.create(cita)
       
-      alert('¡Cita agendada exitosamente! Recibirás un email de confirmación.')
-      navigate('/')
+      success('¡Cita agendada exitosamente! Recibirás un email de confirmación.')
+      setTimeout(() => navigate('/'), 1500)
     } catch (error) {
       console.error('Error al agendar cita:', error)
-      alert('Error al agendar la cita. Por favor intenta de nuevo.')
+      showError('Error al agendar la cita. Por favor intenta de nuevo.')
     } finally {
       setLoading(false)
     }
   }
 
   const nextStep = () => {
-    if (step === 1 && !esNuevoPaciente && !formData.pacienteId) {
-      alert('Por favor selecciona un paciente o marca "Nuevo Paciente"')
-      return
-    }
     setStep(step + 1)
   }
 
@@ -176,7 +160,7 @@ function AgendarCita() {
   return (
     <div className="agendar-cita-container">
       <div className="agendar-header card">
-        <h1>📅 Agendar Cita</h1>
+        <h1>Agendar Cita</h1>
         <p>Completa el formulario para reservar tu cita</p>
         
         <div className="steps-indicator">
@@ -202,108 +186,74 @@ function AgendarCita() {
         {step === 1 && (
           <div className="form-step">
             <h2>Información del Paciente</h2>
-            
-            <div className="checkbox-group">
-              <label>
+            <div className="form-row">
+              <div className="form-group">
+                <label htmlFor="nombrePaciente">Nombre del Niño/a *</label>
                 <input
-                  type="checkbox"
-                  checked={esNuevoPaciente}
-                  onChange={(e) => setEsNuevoPaciente(e.target.checked)}
+                  type="text"
+                  id="nombrePaciente"
+                  name="nombrePaciente"
+                  value={formData.nombrePaciente}
+                  onChange={handleChange}
+                  required
+                  placeholder="Nombre"
                 />
-                Soy un nuevo paciente
-              </label>
+              </div>
+              <div className="form-group">
+                <label htmlFor="apellidosPaciente">Apellidos *</label>
+                <input
+                  type="text"
+                  id="apellidosPaciente"
+                  name="apellidosPaciente"
+                  value={formData.apellidosPaciente}
+                  onChange={handleChange}
+                  required
+                  placeholder="Apellidos"
+                />
+              </div>
             </div>
 
-            {!esNuevoPaciente ? (
+            <div className="form-group">
+              <label htmlFor="fechaNacimiento">Fecha de Nacimiento</label>
+              <input
+                type="date"
+                id="fechaNacimiento"
+                name="fechaNacimiento"
+                value={formData.fechaNacimiento}
+                onChange={handleChange}
+              />
+            </div>
+
+            <div className="form-row">
               <div className="form-group">
-                <label htmlFor="pacienteId">Selecciona el Paciente *</label>
-                <select
-                  id="pacienteId"
-                  name="pacienteId"
-                  value={formData.pacienteId}
+                <label htmlFor="nombreTutor">Nombre del Tutor/Responsable *</label>
+                <input
+                  type="text"
+                  id="nombreTutor"
+                  name="nombreTutor"
+                  value={formData.nombreTutor}
                   onChange={handleChange}
-                  required={!esNuevoPaciente}
-                >
-                  <option value="">-- Selecciona un paciente --</option>
-                  {pacientes.map(paciente => (
-                    <option key={paciente.id} value={paciente.id}>
-                      {paciente.nombre} {paciente.apellidos}
-                    </option>
-                  ))}
-                </select>
+                  required
+                  placeholder="Nombre del tutor"
+                />
               </div>
-            ) : (
-              <>
-                <div className="form-row">
-                  <div className="form-group">
-                    <label htmlFor="nombrePaciente">Nombre del Niño/a *</label>
-                    <input
-                      type="text"
-                      id="nombrePaciente"
-                      name="nombrePaciente"
-                      value={formData.nombrePaciente}
-                      onChange={handleChange}
-                      required={esNuevoPaciente}
-                      placeholder="Nombre"
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label htmlFor="apellidosPaciente">Apellidos *</label>
-                    <input
-                      type="text"
-                      id="apellidosPaciente"
-                      name="apellidosPaciente"
-                      value={formData.apellidosPaciente}
-                      onChange={handleChange}
-                      required={esNuevoPaciente}
-                      placeholder="Apellidos"
-                    />
-                  </div>
-                </div>
-
-                <div className="form-group">
-                  <label htmlFor="fechaNacimiento">Fecha de Nacimiento</label>
-                  <input
-                    type="date"
-                    id="fechaNacimiento"
-                    name="fechaNacimiento"
-                    value={formData.fechaNacimiento}
-                    onChange={handleChange}
-                  />
-                </div>
-
-                <div className="form-row">
-                  <div className="form-group">
-                    <label htmlFor="nombreTutor">Nombre del Tutor/Responsable *</label>
-                    <input
-                      type="text"
-                      id="nombreTutor"
-                      name="nombreTutor"
-                      value={formData.nombreTutor}
-                      onChange={handleChange}
-                      required={esNuevoPaciente}
-                      placeholder="Nombre del tutor"
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label htmlFor="telefonoTutor">Teléfono del Tutor *</label>
-                    <input
-                      type="tel"
-                      id="telefonoTutor"
-                      name="telefonoTutor"
-                      value={formData.telefonoTutor}
-                      onChange={handleChange}
-                      required={esNuevoPaciente}
-                      placeholder="(123) 456-7890"
-                      pattern="[0-9\s\-()+]*"
-                    />
-                    {fieldErrors.telefonoTutor && (
-                      <span className="field-error">{fieldErrors.telefonoTutor}</span>
-                    )}
-                  </div>
-                </div>
-              </>
-            )}
+              <div className="form-group">
+                <label htmlFor="telefonoTutor">Teléfono del Tutor *</label>
+                <input
+                  type="tel"
+                  id="telefonoTutor"
+                  name="telefonoTutor"
+                  value={formData.telefonoTutor}
+                  onChange={handleChange}
+                  required
+                  placeholder="(123) 456-7890"
+                  pattern="[0-9\s\-()+]*"
+                />
+                {fieldErrors.telefonoTutor && (
+                  <span className="field-error">{fieldErrors.telefonoTutor}</span>
+                )}
+              </div>
+            </div>
 
             <div className="form-group">
               <label htmlFor="emailConfirmacion">Email para Confirmación *</label>

@@ -1,7 +1,13 @@
 import { Link } from 'react-router-dom'
 import './Home.css'
+import terapias from '../data/terapiasData'
+import { FALLBACK_THERAPY_IMAGE } from '../constants/imageFallback'
 
 function Home() {
+  const handleImageError = (event) => {
+    event.currentTarget.onerror = null
+    event.currentTarget.src = FALLBACK_THERAPY_IMAGE
+  }
   return (
     <div className="home-container">
       {/* Hero Section */}
@@ -28,15 +34,15 @@ function Home() {
         <h2 className="stats-title">✨ Nuestros Logros ✨</h2>
         <div className="stats-grid">
           <div className="stat-card">
-            <div className="stat-number">+500</div>
+            <div className="stat-number">+50</div>
             <div className="stat-label">👨‍👩‍👧 Familias Atendidas</div>
           </div>
           <div className="stat-card">
-            <div className="stat-number">+2000</div>
+            <div className="stat-number">+200</div>
             <div className="stat-label">⭐ Valoraciones</div>
           </div>
           <div className="stat-card">
-            <div className="stat-number">15+</div>
+            <div className="stat-number">5+</div>
             <div className="stat-label">👨‍⚕️ Profesionales</div>
           </div>
           <div className="stat-card">
@@ -50,36 +56,20 @@ function Home() {
       <div className="terapias-section card">
         <h2 className="section-title">💙 Nuestras Terapias 💙</h2>
         <div className="terapias-grid">
-          <div className="terapia-card">
-            <div className="terapia-icon">🗣️</div>
-            <h3>Logopedia Infantil</h3>
-            <p>Intervención individual para rehabilitar alteraciones del habla y lenguaje</p>
-          </div>
-          <div className="terapia-card">
-            <div className="terapia-icon">🧠</div>
-            <h3>Terapia Ocupacional</h3>
-            <p>Mejora de actividades cotidianas, integración sensorial y psicomotricidad</p>
-          </div>
-          <div className="terapia-card">
-            <div className="terapia-icon">👶</div>
-            <h3>Atención Temprana</h3>
-            <p>Trabajo en áreas cognitiva, motriz, lenguaje y socioemocional</p>
-          </div>
-          <div className="terapia-card">
-            <div className="terapia-icon">🧘</div>
-            <h3>Psicología Infantil</h3>
-            <p>Análisis de conducta y procesos mentales con distintos enfoques</p>
-          </div>
-          <div className="terapia-card">
-            <div className="terapia-icon">📚</div>
-            <h3>Psicopedagogía</h3>
-            <p>Técnicas de estudio, dificultades del aprendizaje y funciones ejecutivas</p>
-          </div>
-          <div className="terapia-card">
-            <div className="terapia-icon">🏃</div>
-            <h3>Fisioterapia Infantil</h3>
-            <p>Mejora de habilidades motoras, integración sensorial y cognitiva</p>
-          </div>
+          {terapias.map((terapia) => (
+            <article key={terapia.id} className="terapia-card">
+              <div className="terapia-image">
+                <img
+                  src={terapia.imagen}
+                  alt={terapia.titulo}
+                  loading="lazy"
+                  onError={handleImageError}
+                />
+              </div>
+              <h3>{terapia.titulo}</h3>
+              <p>{terapia.descripcion}</p>
+            </article>
+          ))}
         </div>
         <div className="terapias-cta">
           <Link to="/servicios" className="btn btn-primary">

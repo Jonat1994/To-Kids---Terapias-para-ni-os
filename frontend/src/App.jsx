@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 import './App.css'
+import { ToastProvider } from './context/ToastContext'
 import PacientesList from './components/PacientesList'
 import PacienteForm from './components/PacienteForm'
 import Home from './components/Home'
@@ -8,11 +9,13 @@ import AgendarCita from './components/AgendarCita'
 import Materiales from './components/Materiales'
 import Contacto from './components/Contacto'
 import AdminPanel from './components/AdminPanel'
+import AdminAccessPanel from './components/AdminAccessPanel'
 import WhatsAppFloat from './components/WhatsAppFloat'
 
 function App() {
   return (
-    <Router>
+    <ToastProvider>
+      <Router>
       <div className="app">
         <nav className="navbar">
           <div className="nav-container">
@@ -50,6 +53,7 @@ function App() {
             <Route path="/materiales" element={<Materiales />} />
             <Route path="/contacto" element={<Contacto />} />
             <Route path="/admin" element={<AdminPanel />} />
+            <Route path="/admin/gestor-acceso" element={<AdminAccessPanel />} />
             <Route path="/pacientes" element={<PacientesList />} />
             <Route path="/nuevo-paciente" element={<PacienteForm />} />
             <Route path="/editar-paciente/:id" element={<PacienteForm />} />
@@ -78,10 +82,11 @@ function App() {
                 </p>
                 <p className="footer-contact-item">
                   <span className="footer-icon">✉️</span>
-                  <span><a href="contacto.tokids@Gmail.com">contacto.tokids@Gmail.com</a></span>
+                  <span><a href="mailto:contacto.tokids@gmail.com">contacto.tokids@gmail.com</a></span>
                 </p>
               </div>
             </div>
+            
 
             {/* Columna 2: Redes Sociales */}
             <div className="footer-section">
@@ -129,52 +134,6 @@ function App() {
                 </a>
               </div>
             </div>
-
-            {/* Columna 3: Enlaces de Interés */}
-            <div className="footer-section">
-              <h3 className="footer-title">Enlaces de Interés</h3>
-              <div className="footer-links">
-                <Link to="/" className="footer-link">
-                  <span className="footer-link-icon">🏠</span>
-                  <span>Inicio</span>
-                </Link>
-                <Link to="/servicios" className="footer-link">
-                  <span className="footer-link-icon">⭐</span>
-                  <span>Nuestros Servicios</span>
-                </Link>
-                <Link to="/agendar-cita" className="footer-link">
-                  <span className="footer-link-icon">📅</span>
-                  <span>Agendar Cita</span>
-                </Link>
-                <Link to="/materiales" className="footer-link">
-                  <span className="footer-link-icon">📚</span>
-                  <span>Materiales</span>
-                </Link>
-                <Link to="/contacto" className="footer-link">
-                  <span className="footer-link-icon">📞</span>
-                  <span>Contacto</span>
-                </Link>
-              </div>
-            </div>
-
-            {/* Columna 4: Información Institucional */}
-            <div className="footer-section">
-              <h3 className="footer-title">Información Institucional</h3>
-              <div className="footer-institutional-links">
-                <Link to="/contacto" className="footer-institutional-link">
-                  Misión y Visión
-                </Link>
-                <Link to="/servicios" className="footer-institutional-link">
-                  Nuestro Método
-                </Link>
-                <Link to="/contacto" className="footer-institutional-link">
-                  Valores
-                </Link>
-                <Link to="/admin" className="footer-institutional-link">
-                  Panel Administrativo
-                </Link>
-              </div>
-            </div>
           </div>
           <div className="footer-bottom">
             <p>&copy; 2025 Centro de Terapia Infantil. Todos los derechos reservados. | Desarrollado por Jonathan Flamenco</p>
@@ -184,7 +143,8 @@ function App() {
         {/* Burbuja flotante de WhatsApp */}
         <WhatsAppFloat />
       </div>
-    </Router>
+      </Router>
+    </ToastProvider>
   )
 }
 

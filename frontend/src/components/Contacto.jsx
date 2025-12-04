@@ -1,7 +1,9 @@
 import { useState } from 'react'
+import { useToast } from '../context/ToastContext'
 import './Contacto.css'
 
 function Contacto() {
+  const { success, error: showError } = useToast()
   const [formData, setFormData] = useState({
     nombre: '',
     email: '',
@@ -83,12 +85,12 @@ function Contacto() {
         ...prev,
         email: 'Por favor ingresa un correo electrónico válido'
       }))
-      alert('Por favor corrige el correo electrónico')
+      showError('Por favor corrige el correo electrónico')
       return
     }
 
     // Aquí puedes agregar la lógica para enviar el formulario
-    alert('Mensaje enviado exitosamente!')
+    success('Mensaje enviado exitosamente. Nos pondremos en contacto contigo pronto.')
     setFormData({
       nombre: '',
       email: '',
@@ -101,7 +103,7 @@ function Contacto() {
   return (
     <div className="contacto-container">
       <div className="contacto-header card">
-        <h1>📞 Contáctanos</h1>
+        <h1>Contáctanos</h1>
         <p>Estamos aquí para ayudarte. No dudes en comunicarte con nosotros</p>
       </div>
 
