@@ -46,6 +46,12 @@ export const citaService = {
     const response = await api.get('/citas/proximas');
     return response.data;
   },
+  getByRango: async (inicio, fin) => {
+    const response = await api.get('/citas/rango', {
+      params: { inicio, fin }
+    });
+    return response.data;
+  },
   create: async (cita) => {
     const response = await api.post('/citas', cita);
     return response.data;
