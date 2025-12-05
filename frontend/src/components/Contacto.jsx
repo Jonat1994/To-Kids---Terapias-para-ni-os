@@ -115,8 +115,8 @@ function Contacto() {
             <div className="info-icon">📍</div>
             <div className="info-details">
               <h3>Dirección</h3>
-              <p>Av. Principal #123, Centro</p>
-              <p>Ciudad, País</p>
+              <p>Diagonal 2 Luis E Vasquez No 224, San Salvador.</p>
+              <p>Local # 303</p>
             </div>
           </div>
 
@@ -124,8 +124,8 @@ function Contacto() {
             <div className="info-icon">📞</div>
             <div className="info-details">
               <h3>Teléfonos</h3>
-              <p>Principal: (123) 456-7890</p>
-              <p>WhatsApp: (123) 456-7891</p>
+              <p>Principal: 7062-9993</p>
+              <p>WhatsApp: 7062-9993</p>
             </div>
           </div>
 
@@ -133,8 +133,7 @@ function Contacto() {
             <div className="info-icon">📧</div>
             <div className="info-details">
               <h3>Email</h3>
-              <p>info@centroterapiainfantil.com</p>
-              <p>consultas@centroterapiainfantil.com</p>
+              <p>contacto.tokids@gmail.com</p>
             </div>
           </div>
 
@@ -142,8 +141,8 @@ function Contacto() {
             <div className="info-icon">🕐</div>
             <div className="info-details">
               <h3>Horario de Atención</h3>
-              <p>Lunes a Viernes: 8:00 AM - 6:00 PM</p>
-              <p>Sábados: 9:00 AM - 2:00 PM</p>
+              <p>Lunes a Viernes: 9:00 AM - 5:00 PM</p>
+              <p>Sábados: 8:00 AM - 3:00 PM</p>
               <p>Domingos: Cerrado</p>
             </div>
           </div>

@@ -74,7 +74,7 @@ function App() {
               <div className="footer-contact-info">
                 <p className="footer-contact-item">
                   <span className="footer-icon">📍</span>
-                  <span>Calle Principal 123, Ciudad, País</span>
+                  <span>Diagonal 2 Luis E Vasquez No 224, San Salvador. Local#303</span>
                 </p>
                 <p className="footer-contact-item">
                   <span className="footer-icon">📞</span>
@@ -93,7 +93,7 @@ function App() {
               <h3 className="footer-title">Redes Sociales</h3>
               <div className="social-links">
                 <a 
-                  href="https://www.facebook.com" 
+                  href="https://www.facebook.com/share/1DrFpwdWG3/" 
                   target="_blank" 
                   rel="noopener noreferrer" 
                   className="social-link facebook"
@@ -103,7 +103,7 @@ function App() {
                   <span>Facebook</span>
                 </a>
                 <a 
-                  href="https://www.instagram.com" 
+                  href="https://www.instagram.com/terapiastokids?igsh=MTdrcTUzc2Fmc3E5Yg==" 
                   target="_blank" 
                   rel="noopener noreferrer" 
                   className="social-link instagram"
