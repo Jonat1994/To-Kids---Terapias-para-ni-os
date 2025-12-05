@@ -4,7 +4,7 @@ const terapiasData = [
     titulo: 'Logopedia Infantil',
     descripcion: 'Intervención individual para rehabilitar alteraciones del habla y el lenguaje.',
     imagen:
-      'https://images.unsplash.com/photo-1509099836639-18ba3d9b7d80?auto=format&fit=crop&w=800&q=80',
+      'https://www.espurna.org/wp-content/uploads/2022/03/dignavall-marzo-2022-IMG_1619.jpg',
     icono: '🗣️',
     beneficios: ['Mejora en la expresión verbal', 'Reducción de tartamudeo', 'Confianza al comunicarse']
   },
@@ -22,7 +22,7 @@ const terapiasData = [
     titulo: 'Atención Temprana',
     descripcion: 'Estimulación temprana para fortalecer áreas cognitivas y motoras.',
     imagen:
-      'https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=800&q=80',
+      'https://www.cdiatbajoguadalquivir.org/wp-content/uploads/2023/03/5.-Sala-Logopedia-1.jpg',
     icono: '👶',
     beneficios: ['Cognición', 'Comunicación', 'Vínculo emocional']
   },
@@ -31,7 +31,7 @@ const terapiasData = [
     titulo: 'Psicología Infantil',
     descripcion: 'Análisis de conducta y procesos mentales con enfoque terapéutico.',
     imagen:
-      'https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=800&q=80',
+      'https://psyalive.com/blog/wp-content/uploads/2017/05/psicoterapia-infantil-como-funciona-e-quem-deve-fazer-9850-768x512.jpg',
     icono: '🧘',
     beneficios: ['Regulación emocional', 'Autoestima', 'Resolución de conflictos']
   },
@@ -49,7 +49,7 @@ const terapiasData = [
     titulo: 'Fisioterapia Infantil',
     descripcion: 'Trabajo en habilidades motoras, integración sensorial y coordinación.',
     imagen:
-      'https://images.unsplash.com/photo-1526401485004-8a1c41b4c6c8?auto=format&fit=crop&w=800&q=80',
+      'https://www.pequenoscuidados.es/storage/contents/fichas/fisioterapia-pediatrica.jpg',
     icono: '🏃',
     beneficios: ['Coordinación', 'Fortaleza', 'Equilibrio']
   }

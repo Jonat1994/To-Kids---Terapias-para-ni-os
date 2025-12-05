@@ -7,13 +7,13 @@ const actividades = [
     id: 'memoria',
     titulo: 'Juego de memoria visual',
     descripcion: 'Parejas de imágenes y sonidos pensados para reforzar la atención sostenida.',
-    link: 'https://www.educaplay.com/es/recursoseducativos/18319527-juego_de_memoria.html'
+    link: 'https://wordwall.net/es/resource/16914724/juegos-del-jardin-de-infantes/juegos-del-jard%C3%ADn'
   },
   {
     id: 'colores',
     titulo: 'Clasifica colores y formas',
     descripcion: 'Actividad interactiva que combina reconocimiento visual y destreza motora.',
-    link: 'https://www.highlightskids.com/online-games/color/'
+    link: 'https://www.educaenvivo.com/juegos-educativos-online/clasificar-colores/'
   },
   {
     id: 'relajacion',
@@ -25,7 +25,7 @@ const actividades = [
     id: 'historias',
     titulo: 'Cuentos interactivos',
     descripcion: 'Historias narradas con pictogramas que fortalecen la comprensión auditiva.',
-    link: 'https://www.storylineonline.net'
+    link: 'https://logiclike.com/es-mx/start?course=child&utm_source=google&utm_medium=cpc&utm_campaign=esgames&utm_term=juegos%20para%20ni%C3%B1os&campaignid=21853255911&group={groupid}&channel=g&gad_source=1&gad_campaignid=21853255911&gbraid=0AAAAApQMzt-jYvl3_ujRht-4cKeF8uaax&gclid=Cj0KCQiA_8TJBhDNARIsAPX5qxR54Lb_isHjXFW404iQpJ7u2cXAj3RUEcJazB857-T2NLaNFsv5VowaAg8WEALw_wcB'
   }
 ]
 
