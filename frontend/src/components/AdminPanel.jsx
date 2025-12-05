@@ -48,17 +48,31 @@ function AdminPanel() {
   const loadAllData = async () => {
     try {
       setLoading(true)
+      console.log('Iniciando carga de datos administrativos...')
+      
       const [citasData, pacientesData, materialesData] = await Promise.all([
-        citaService.getAll(),
-        pacienteService.getAll(),
-        materialService.getAll()
+        citaService.getAll().catch(err => {
+            console.error('Error cargando citas:', err)
+            return []
+        }),
+        pacienteService.getAll().catch(err => {
+            console.error('Error cargando pacientes:', err)
+            return []
+        }),
+        materialService.getAll().catch(err => {
+            console.error('Error cargando materiales:', err)
+            return []
+        })
       ])
+      
+      console.log('Datos cargados:', { citas: citasData?.length, pacientes: pacientesData?.length, materiales: materialesData?.length })
+      
       setCitas(citasData || [])
       setPacientes(pacientesData || [])
       setMateriales(materialesData || [])
     } catch (error) {
-      console.error('Error al cargar datos del panel administrativo:', error)
-      showError('No se pudieron cargar los datos administrativos')
+      console.error('Error CRÍTICO al cargar datos del panel administrativo:', error)
+      showError('No se pudieron cargar los datos administrativos. Revisa la consola.')
     } finally {
       setLoading(false)
     }
