@@ -27,15 +27,6 @@ const terapiasData = [
     beneficios: ['Cognición', 'Comunicación', 'Vínculo emocional']
   },
   {
-    id: 'psicologia',
-    titulo: 'Psicología Infantil',
-    descripcion: 'Análisis de conducta y procesos mentales con enfoque terapéutico.',
-    imagen:
-      'https://psyalive.com/blog/wp-content/uploads/2017/05/psicoterapia-infantil-como-funciona-e-quem-deve-fazer-9850-768x512.jpg',
-    icono: '🧘',
-    beneficios: ['Regulación emocional', 'Autoestima', 'Resolución de conflictos']
-  },
-  {
     id: 'psicopedagogia',
     titulo: 'Psicopedagogía',
     descripcion: 'Técnicas de estudio y apoyo para dificultades del aprendizaje.',

@@ -31,10 +31,11 @@
 }
 
 .servicios-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
   gap: 2rem;
   margin-bottom: 3rem;
+  justify-content: center;
 }
 
 .servicio-card {
@@ -46,6 +47,7 @@
   box-shadow: 0 15px 45px rgba(0, 0, 0, 0.08);
   overflow: hidden;
   transition: transform 0.3s ease, border 0.3s ease;
+  width: 300px;
 }
 
 .servicio-card:hover {

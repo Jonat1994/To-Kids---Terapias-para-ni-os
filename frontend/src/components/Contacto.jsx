@@ -231,7 +231,7 @@ function Contacto() {
 
       <div className="mision-vision card">
         <div className="mv-item">
-          <h2>🎯 Misión</h2>
+          <h2> Misión</h2>
           <p>
             Proporcionar servicios terapéuticos de excelencia para niños, promoviendo su 
             desarrollo integral y mejorando su calidad de vida a través de intervenciones 
@@ -240,7 +240,7 @@ function Contacto() {
         </div>
 
         <div className="mv-item">
-          <h2>👁️ Visión</h2>
+          <h2> Visión</h2>
           <p>
             Ser el centro de referencia en terapia infantil, reconocido por nuestra 
             excelencia profesional, compromiso con las familias y contribución al 
@@ -249,7 +249,7 @@ function Contacto() {
         </div>
 
         <div className="mv-item">
-          <h2>💝 Valores</h2>
+          <h2> Valores</h2>
           <ul>
             <li>✓ Compromiso con la excelencia</li>
             <li>✓ Empatía y respeto</li>

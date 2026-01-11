@@ -1,6 +1,10 @@
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
+import { SiFacebook, SiInstagram, SiTiktok, SiWhatsapp } from 'react-icons/si'
+import { FaUser, FaSignOutAlt, FaBars, FaTimes } from 'react-icons/fa'
+import { useState } from 'react'
 import './App.css'
 import { ToastProvider } from './context/ToastContext'
+import { AuthProvider, useAuth } from './context/AuthContext'
 import PacientesList from './components/PacientesList'
 import PacienteForm from './components/PacienteForm'
 import Home from './components/Home'
@@ -8,38 +12,68 @@ import Servicios from './components/Servicios'
 import AgendarCita from './components/AgendarCita'
 import Materiales from './components/Materiales'
 import Contacto from './components/Contacto'
-import AdminPanel from './components/AdminPanel'
-import AdminAccessPanel from './components/AdminAccessPanel'
+import Metodo from './components/Metodo'
+import Login from './components/Login'
+import Registro from './components/Registro'
+import Dashboard from './components/Dashboard'
+import ForgotPassword from './components/ForgotPassword'
+import ResetPassword from './components/ResetPassword'
 import WhatsAppFloat from './components/WhatsAppFloat'
 
-function App() {
+function AppContent() {
+  const { user } = useAuth()
+  const [menuOpen, setMenuOpen] = useState(false)
+
+  const toggleMenu = () => setMenuOpen(!menuOpen)
+  const closeMenu = () => setMenuOpen(false)
+
   return (
-    <ToastProvider>
-      <Router>
+    <Router>
       <div className="app">
         <nav className="navbar">
           <div className="nav-container">
-            <Link to="/" className="nav-logo">
+            {/* Botón Hamburguesa */}
+            <button className="hamburger-menu" onClick={toggleMenu}>
+              {menuOpen ? <FaTimes /> : <FaBars />}
+            </button>
+
+            <Link to="/" className="nav-logo" onClick={closeMenu}>
               <img src="/logo.png.png" alt="TO kids - Terapias para niños" className="logo-image" />
             </Link>
-            <ul className="nav-menu">
+
+            {/* Overlay para cerrar menú */}
+            {menuOpen && <div className="menu-overlay" onClick={closeMenu}></div>}
+
+            {/* Menú Principal */}
+            <ul className={`nav-menu ${menuOpen ? 'active' : ''}`}>
               <li className="nav-item">
-                <Link to="/" className="nav-link">🏠 Inicio</Link>
+                <Link to="/" className="nav-link" onClick={closeMenu}>🏠 Inicio</Link>
               </li>
               <li className="nav-item">
-                <Link to="/servicios" className="nav-link">⭐ Servicios</Link>
+                <Link to="/servicios" className="nav-link" onClick={closeMenu}>⭐ Servicios</Link>
               </li>
               <li className="nav-item">
-                <Link to="/agendar-cita" className="nav-link">📅 Agendar Cita</Link>
+                <Link to="/agendar-cita" className="nav-link" onClick={closeMenu}>📅 Agendar Cita</Link>
               </li>
               <li className="nav-item">
-                <Link to="/materiales" className="nav-link">📚 Materiales</Link>
+                <Link to="/materiales" className="nav-link" onClick={closeMenu}>📚 Materiales</Link>
               </li>
               <li className="nav-item">
-                <Link to="/contacto" className="nav-link">📞 Contacto</Link>
+                <Link to="/metodo" className="nav-link" onClick={closeMenu}>🎯 Método</Link>
               </li>
               <li className="nav-item">
-                <Link to="/admin" className="nav-link">🔧 Admin</Link>
+                <Link to="/contacto" className="nav-link" onClick={closeMenu}>📞 Contacto</Link>
+              </li>
+              <li className="nav-item">
+                {user ? (
+                  <Link to="/dashboard" className="nav-link nav-auth nav-auth-icon" title="Mi Cuenta" onClick={closeMenu}>
+                    <FaUser /> <span className="nav-auth-text">Cuenta</span>
+                  </Link>
+                ) : (
+                  <Link to="/login" className="nav-link nav-auth nav-auth-icon" title="Inicia Sesión" onClick={closeMenu}>
+                    <FaUser /> <span className="nav-auth-text">Login</span>
+                  </Link>
+                )}
               </li>
             </ul>
           </div>
@@ -51,9 +85,13 @@ function App() {
             <Route path="/servicios" element={<Servicios />} />
             <Route path="/agendar-cita" element={<AgendarCita />} />
             <Route path="/materiales" element={<Materiales />} />
+            <Route path="/metodo" element={<Metodo />} />
             <Route path="/contacto" element={<Contacto />} />
-            <Route path="/admin" element={<AdminPanel />} />
-            <Route path="/admin/gestor-acceso" element={<AdminAccessPanel />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/registro" element={<Registro />} />
+            <Route path="/forgot-password" element={<ForgotPassword />} />
+            <Route path="/reset-password" element={<ResetPassword />} />
+            <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/pacientes" element={<PacientesList />} />
             <Route path="/nuevo-paciente" element={<PacienteForm />} />
             <Route path="/editar-paciente/:id" element={<PacienteForm />} />
@@ -99,7 +137,7 @@ function App() {
                   className="social-link facebook"
                   aria-label="Facebook"
                 >
-                  <span className="social-icon">📘</span>
+                  <SiFacebook className="social-icon" />
                   <span>Facebook</span>
                 </a>
                 <a 
@@ -109,7 +147,7 @@ function App() {
                   className="social-link instagram"
                   aria-label="Instagram"
                 >
-                  <span className="social-icon">📷</span>
+                  <SiInstagram className="social-icon" />
                   <span>Instagram</span>
                 </a>
                 <a 
@@ -119,7 +157,7 @@ function App() {
                   className="social-link tiktok"
                   aria-label="TikTok"
                 >
-                  <span className="social-icon">🎵</span>
+                  <SiTiktok className="social-icon" />
                   <span>TikTok</span>
                 </a>
                 <a 
@@ -129,14 +167,14 @@ function App() {
                   className="social-link whatsapp"
                   aria-label="WhatsApp"
                 >
-                  <span className="social-icon">💬</span>
+                  <SiWhatsapp className="social-icon" />
                   <span>WhatsApp</span>
                 </a>
               </div>
             </div>
           </div>
           <div className="footer-bottom">
-            <p>&copy; 2025 Centro de Terapia Infantil. Todos los derechos reservados. | Desarrollado por Jonathan Flamenco</p>
+            <p>&copy; 2026 Centro de Terapia Infantil. Todos los derechos reservados. | Desarrollado por Jonathan Flamenco</p>
           </div>
         </footer>
 
@@ -144,7 +182,16 @@ function App() {
         <WhatsAppFloat />
       </div>
       </Router>
-    </ToastProvider>
+  )
+}
+
+function App() {
+  return (
+    <AuthProvider>
+      <ToastProvider>
+        <AppContent />
+      </ToastProvider>
+    </AuthProvider>
   )
 }
 
