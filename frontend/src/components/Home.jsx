@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import './Home.css'
 import terapias from '../data/terapiasData'
 import { FALLBACK_THERAPY_IMAGE } from '../constants/imageFallback'
+import AnimatedCounter from './AnimatedCounter'
 
 function Home() {
   const handleImageError = (event) => {
@@ -34,19 +35,19 @@ function Home() {
         <h2 className="stats-title">✨ Nuestros Logros ✨</h2>
         <div className="stats-grid">
           <div className="stat-card">
-            <div className="stat-number">+50</div>
-            <div className="stat-label">👨‍👩‍👧 Familias Atendidas</div>
+            <div className="stat-number"><AnimatedCounter targetValue="+50" /></div>
+            <div className="stat-label">👨‍👩‍👧 Familias Atendidas al año</div>
           </div>
           <div className="stat-card">
-            <div className="stat-number">+200</div>
+            <div className="stat-number"><AnimatedCounter targetValue="+100" /></div>
             <div className="stat-label">⭐ Valoraciones</div>
           </div>
           <div className="stat-card">
-            <div className="stat-number">5+</div>
-            <div className="stat-label">👨‍⚕️ Profesionales</div>
+            <div className="stat-number"><AnimatedCounter targetValue="5+" /></div>
+            <div className="stat-label">👨‍⚕️terapias disponibles</div>
           </div>
           <div className="stat-card">
-            <div className="stat-number">10+</div>
+            <div className="stat-number"><AnimatedCounter targetValue="3+" /></div>
             <div className="stat-label">📚 Años de Experiencia</div>
           </div>
         </div>
@@ -54,7 +55,7 @@ function Home() {
 
       {/* Nuestras Terapias */}
       <div className="terapias-section card">
-        <h2 className="section-title">💙 Nuestras Terapias 💙</h2>
+        <h2 className="section-title">💙 Nuestros Servicios 💙</h2>
         <div className="terapias-grid">
           {terapias.map((terapia) => (
             <article key={terapia.id} className="terapia-card">
@@ -128,7 +129,6 @@ function Home() {
               <li>✓ Atención Temprana</li>
               <li>✓ Retraso Madurativo</li>
               <li>✓ Logopedia Infantil</li>
-              <li>✓ Psicología Infantil</li>
               <li>✓ Psicopedagogía</li>
               <li>✓ Terapia Ocupacional</li>
               <li>✓ Fisioterapia Infantil</li>

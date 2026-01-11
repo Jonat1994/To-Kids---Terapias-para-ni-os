@@ -1,0 +1,270 @@
+.metodo-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.metodo-header {
+  text-align: center;
+  padding: 3rem 2rem;
+  margin-bottom: 3rem;
+  background: linear-gradient(135deg, rgba(255, 107, 157, 0.1) 0%, rgba(100, 200, 255, 0.1) 100%);
+}
+
+.metodo-header h1 {
+  color: #FF6B9D;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.metodo-intro {
+  font-size: 1.1rem;
+  color: #666;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.metodo-section {
+  margin-bottom: 3rem;
+  padding: 2.5rem;
+}
+
+.metodo-section h2 {
+  color: #FF6B9D;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.metodo-content {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: #555;
+}
+
+.metodo-content p {
+  margin-bottom: 1rem;
+}
+
+.metodo-content strong {
+  color: #FF6B9D;
+}
+
+/* Principios Grid */
+.principios-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.pilar-card {
+  background: linear-gradient(135deg, rgba(255, 107, 157, 0.05) 0%, rgba(100, 200, 255, 0.05) 100%);
+  padding: 1.5rem;
+  border-radius: 12px;
+  border-left: 4px solid #FF6B9D;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.pilar-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(255, 107, 157, 0.15);
+}
+
+.pilar-icono {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.pilar-card h3 {
+  color: #FF6B9D;
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+}
+
+.pilar-card p {
+  color: #666;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/* Trabajo Grid */
+.trabajo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.metodo-subtitle {
+  text-align: center;
+  color: #666;
+  font-size: 1.05rem;
+  margin: -1rem 0 1.5rem 0;
+}
+
+.trabajo-card {
+  background: white;
+  padding: 2rem;
+  border-radius: 15px;
+  border: 2px solid rgba(255, 107, 157, 0.2);
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.trabajo-card:hover {
+  border-color: #FF6B9D;
+  box-shadow: 0 15px 40px rgba(255, 107, 157, 0.15);
+  transform: translateY(-8px);
+}
+
+.trabajo-icono {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  display: inline-block;
+}
+
+.trabajo-card h3 {
+  color: #FF6B9D;
+  margin-bottom: 0.75rem;
+  font-size: 1.3rem;
+}
+
+.trabajo-card p {
+  color: #666;
+  line-height: 1.6;
+}
+
+/* Proceso Steps */
+.proceso-steps {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.paso {
+  background: linear-gradient(135deg, #FF6B9D 0%, #FF8FB9 100%);
+  color: white;
+  padding: 2rem;
+  border-radius: 12px;
+  width: 200px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(255, 107, 157, 0.3);
+}
+
+.paso-numero {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.paso h4 {
+  margin: 0.5rem 0;
+  font-size: 1.1rem;
+}
+
+.paso p {
+  font-size: 0.95rem;
+  opacity: 0.95;
+}
+
+.paso-flecha {
+  color: #FF6B9D;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+@media (max-width: 768px) {
+  .proceso-steps {
+    gap: 1rem;
+  }
+
+  .paso {
+    width: 150px;
+    padding: 1.5rem 1rem;
+  }
+
+  .paso h4 {
+    font-size: 0.95rem;
+  }
+
+  .paso p {
+    font-size: 0.85rem;
+  }
+
+  .paso-flecha {
+    display: none;
+  }
+}
+
+/* Terapeutas Content */
+.terapeutas-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.terapeutas-item {
+  background: linear-gradient(135deg, rgba(255, 107, 157, 0.08) 0%, rgba(100, 200, 255, 0.08) 100%);
+  padding: 2rem;
+  border-radius: 12px;
+  border-left: 4px solid #FF6B9D;
+}
+
+.terapeutas-item h4 {
+  color: #FF6B9D;
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+}
+
+.terapeutas-item p {
+  color: #555;
+  line-height: 1.7;
+}
+
+/* CTA Section */
+.metodo-cta {
+  background: linear-gradient(135deg, #FF6B9D 0%, #FF8FB9 100%);
+  color: white;
+  text-align: center;
+  padding: 3rem 2rem;
+  border-radius: 18px;
+  margin-top: 3rem;
+}
+
+.metodo-cta h3 {
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+}
+
+.metodo-cta .btn {
+  display: inline-block;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .metodo-header h1 {
+    font-size: 2rem;
+  }
+
+  .metodo-section {
+    padding: 1.5rem;
+  }
+
+  .metodo-section h2 {
+    font-size: 1.5rem;
+  }
+
+  .principios-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+
+  .trabajo-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,127 @@
+.dashboard-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 200px);
+  padding: 2rem 1rem;
+  background: linear-gradient(135deg, rgba(255, 107, 157, 0.08) 0%, rgba(100, 200, 255, 0.08) 100%);
+}
+
+.dashboard-card {
+  max-width: 500px;
+  width: 100%;
+  padding: 2.5rem;
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-header {
+  text-align: center;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 2px solid rgba(255, 107, 157, 0.2);
+}
+
+.dashboard-header h1 {
+  color: #FF6B9D;
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.user-name {
+  color: #666;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.dashboard-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.info-card {
+  background: linear-gradient(135deg, rgba(255, 107, 157, 0.05) 0%, rgba(100, 200, 255, 0.05) 100%);
+  padding: 1.5rem;
+  border-radius: 12px;
+  border-left: 4px solid #FF6B9D;
+}
+
+.info-card h3 {
+  color: #FF6B9D;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+.info-card p {
+  color: #555;
+  word-break: break-all;
+  font-size: 0.95rem;
+}
+
+.profile-photo {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #FF6B9D;
+}
+
+.user-id {
+  font-family: 'Courier New', monospace;
+  font-size: 0.85rem;
+  color: #888;
+}
+
+.dashboard-footer {
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+}
+
+.dashboard-footer .btn {
+  padding: 0.75rem 1.5rem;
+  border-radius: 10px;
+  text-decoration: none;
+  text-align: center;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: none;
+}
+
+.dashboard-footer .btn-secondary {
+  background: #FF6B9D;
+  color: white;
+}
+
+.dashboard-footer .btn-secondary:hover {
+  background: #E55A8E;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(255, 107, 157, 0.3);
+}
+
+.dashboard-footer .btn-primary {
+  background: white;
+  color: #FF6B9D;
+  border: 2px solid #FF6B9D;
+}
+
+.dashboard-footer .btn-primary:hover {
+  background: rgba(255, 107, 157, 0.1);
+}
+
+@media (max-width: 480px) {
+  .dashboard-card {
+    padding: 1.5rem;
+  }
+
+  .dashboard-header h1 {
+    font-size: 1.5rem;
+  }
+
+  .dashboard-footer {
+    flex-direction: column;
+  }
+}
