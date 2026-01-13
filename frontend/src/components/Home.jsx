@@ -13,12 +13,12 @@ function Home() {
     <div className="home-container">
       {/* Hero Section */}
       <div className="hero-section card">
-        <h1 className="hero-title">🌈 Bienvenido a To Kids - Terapias para niños.🌈</h1>
+        <h1 className="hero-title">🧩Bienvenido a TO Kids – Clínica de terapias para niños🧸</h1>
         <p className="hero-subtitle">
-          Especializados en atención y estimulación temprana, retraso madurativo y desarrollo integral de los más pequeños
+          Un espacio lleno de amor
         </p>
         <p className="hero-description">
-          Un espacio lleno de amor, aprendizaje y crecimiento donde cada niño recibe el apoyo que necesita para alcanzar su máximo potencial
+          Un espacio lleno de amor, aprendizaje y crecimiento, donde cada niño recibe el apoyo que necesita para alcanzar su máximo potencial
         </p>
         <div className="hero-buttons">
           <Link to="/agendar-cita" className="btn btn-primary">
